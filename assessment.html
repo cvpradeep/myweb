@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Self-Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Knowledge Self-Assessment: Lakes, Rivers, and Seas</h1>
+        <p>Test your knowledge of the world's most famous lakes, rivers, and seas. Can you answer all the questions correctly?</p>
+    </header>
+
+    <main class="assessment-container">
+        <form id="knowledge-assessment-form">
+
+            <!-- Lakes Section -->
+            <section class="assessment-section">
+                <h2>Lakes Assessment</h2>
+                <div class="question">
+                    <label>1. Which is the deepest lake in the world?</label>
+                    <div class="options">
+                        <label><input type="radio" name="lake-q1" value="a"> Lake Baikal</label>
+                        <label><input type="radio" name="lake-q1" value="b"> Lake Michigan</label>
+                        <label><input type="radio" name="lake-q1" value="c"> Lake Victoria</label>
+                        <label><input type="radio" name="lake-q1" value="d"> Lake Titicaca</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <label>2. Which lake is located in Africa?</label>
+                    <div class="options">
+                        <label><input type="radio" name="lake-q2" value="a"> Lake Chad</label>
+                        <label><input type="radio" name="lake-q2" value="b"> Lake Lucerne</label>
+                        <label><input type="radio" name="lake-q2" value="c"> Lake Ladoga</label>
+                        <label><input type="radio" name="lake-q2" value="d"> Lake Chilika</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rivers Section -->
+            <section class="assessment-section">
+                <h2>Rivers Assessment</h2>
+                <div class="question">
+                    <label>1. Which river is the longest in the world?</label>
+                    <div class="options">
+                        <label><input type="radio" name="river-q1" value="a"> Nile</label>
+                        <label><input type="radio" name="river-q1" value="b"> Amazon</label>
+                        <label><input type="radio" name="river-q1" value="c"> Mississippi</label>
+                        <label><input type="radio" name="river-q1" value="d"> Yangtze</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <label>2. The Rhine River is located on which continent?</label>
+                    <div class="options">
+                        <label><input type="radio" name="river-q2" value="a"> Asia</label>
+                        <label><input type="radio" name="river-q2" value="b"> Europe</label>
+                        <label><input type="radio" name="river-q2" value="c"> Africa</label>
+                        <label><input type="radio" name="river-q2" value="d"> South America</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seas Section -->
+            <section class="assessment-section">
+                <h2>Seas Assessment</h2>
+                <div class="question">
+                    <label>1. Which sea is bordered by both Europe and Africa?</label>
+                    <div class="options">
+                        <label><input type="radio" name="sea-q1" value="a"> South China Sea</label>
+                        <label><input type="radio" name="sea-q1" value="b"> Caribbean Sea</label>
+                        <label><input type="radio" name="sea-q1" value="c"> Mediterranean Sea</label>
+                        <label><input type="radio" name="sea-q1" value="d"> Tasman Sea</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <label>2. Which sea is located in the Pacific Ocean?</label>
+                    <div class="options">
+                        <label><input type="radio" name="sea-q2" value="a"> Philippine Sea</label>
+                        <label><input type="radio" name="sea-q2" value="b"> North Sea</label>
+                        <label><input type="radio" name="sea-q2" value="c"> Red Sea</label>
+                        <label><input type="radio" name="sea-q2" value="d"> Caribbean Sea</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Button -->
+            <div class="submit-section">
+                <button type="button" class="button" onclick="submitAssessment()">Submit</button>
+            </div>
+        </form>
+
+        <!-- Results Section (hidden until submission) -->
+        <section id="results-section" class="hidden">
+            <h2>Your Results</h2>
+            <p id="results-message"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Grand Adventures | Test Your Knowledge!</p>
+    </footer>
+
+    <script>
+        function submitAssessment() {
+            const answers = {
+                "lake-q1": "a", // Lake Baikal
+                "lake-q2": "a", // Lake Chad
+                "river-q1": "a", // Nile
+                "river-q2": "b", // Europe
+                "sea-q1": "c",  // Mediterranean Sea
+                "sea-q2": "a"   // Philippine Sea
+            };
+
+            let score = 0;
+            const form = document.getElementById('knowledge-assessment-form');
+            const formData = new FormData(form);
+
+            for (let [question, correctAnswer] of Object.entries(answers)) {
+                if (formData.get(question) === correctAnswer) {
+                    score++;
+                }
+            }
+
+            const resultsSection = document.getElementById('results-section');
+            const resultsMessage = document.getElementById('results-message');
+
+            resultsMessage.innerText = `You got ${score} out of 6 questions correct!`;
+            resultsSection.classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
